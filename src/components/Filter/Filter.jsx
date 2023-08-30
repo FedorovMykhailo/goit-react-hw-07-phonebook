@@ -12,8 +12,6 @@ const Filter = () => {
         const name = evt.currentTarget.value.toLowerCase().trim();
         dispatch(setFilterValue(name))
     }
-
-
         return (
             <div>
                 <input className={css.formInput}     

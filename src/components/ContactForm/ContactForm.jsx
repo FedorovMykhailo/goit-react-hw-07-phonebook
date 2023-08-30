@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "redux/contactSlice";
-import { getContacts } from "redux/selectors";
+import { addContact } from "api/services";
+import { selectContacts } from "redux/selectors";
 import css from "../ContactForm/ContactForm.module.css"
 //import PropTypes from "prop-types";
 
 const FormComponent = () => {   
     
     const dispatch = useDispatch();
-    const contacts = useSelector(getContacts);
-
+    const contacts = useSelector(selectContacts);
+   
     const handleFormSubmit = (evt) => {
         evt.preventDefault()
         const name = evt.currentTarget.elements.name.value;
         const phone = evt.currentTarget.elements.number.value;
         if (contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase()))
             return alert(`${name.toLowerCase()} is already in contacts`)
-        dispatch(addContact({ "name": name, "number": phone }))
+        dispatch(addContact({ "name": name, "phone": phone }))
         evt.currentTarget.reset()
     } 
 
